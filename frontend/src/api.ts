@@ -56,7 +56,10 @@ export const generateSuspended = <T>(
 const apiPort = 8000;
 
 export const requestGetContacts = async () => {
-  const ret = await fetch(`http://localhost:${apiPort}/contacts`);
+  const apiUrl = `http://localhost:${apiPort}/contacts`;
+  console.log("apiUrl:", apiUrl);
+
+  const ret = await fetch(apiUrl);
   if (!ret.ok) {
     throw new Error("Request failed");
   }
