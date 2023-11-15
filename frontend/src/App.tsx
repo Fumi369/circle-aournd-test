@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { getContacts } from "./api";
+import { Contact } from "./type";
 
 function App() {
   return (
@@ -14,17 +15,24 @@ function App() {
 
 function ContactList() {
   const contacts = getContacts();
+  console.log("contacts:", contacts);
 
   return (
     <ul>
       {contacts.map((contact) => (
         <li key={contact.id}>
-          <div style={{ color: "blue" }}>
-            {contact.name} | {contact.email}
-          </div>
+          <ContactItem cont={contact} />
         </li>
       ))}
     </ul>
+  );
+}
+
+function ContactItem({ cont }: { cont: Contact }) {
+  return (
+    <div style={{ color: "blue" }}>
+      {cont.name} | {cont.email}
+    </div>
   );
 }
 
