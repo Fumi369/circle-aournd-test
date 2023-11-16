@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { getContacts } from "./api";
 import { Contact } from "./type";
 
@@ -29,8 +29,18 @@ function ContactList() {
 }
 
 function ContactItem({ cont }: { cont: Contact }) {
+  const [fontColor, setFontColor] = useState("blue");
+
+  const changeFontColor = () => {
+    // 赤くするだけ
+    setFontColor("red");
+
+    // 赤から青に戻せる
+    // setFontColor(fontColor === "blue" ? "red" : "blue");
+  };
+
   return (
-    <div style={{ color: "blue" }}>
+    <div style={{ color: fontColor }} onClick={changeFontColor}>
       {cont.name} | {cont.email}
     </div>
   );
