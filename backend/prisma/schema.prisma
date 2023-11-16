@@ -11,12 +11,15 @@ datasource db {
 }
 
 model Contact {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  name       String
+  categories Category[]
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  contact   Contact? @relation(fields: [contactId], references: [id])
+  contactId Int?
 }
